@@ -5,7 +5,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 function CodeScanner() {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
-    const [text, setText] = useState('Not yet scanned')
+    const [text, setText] = useState('Scan store QR code')
 
     const askForCameraPermission = () => {
         (async () => {
@@ -49,9 +49,7 @@ function CodeScanner() {
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                     style={{ height: 400, width: 400 }} />
             </View>
-            <Text style={styles.maintext}>{"Welcome to"}</Text>
             <Text style={styles.maintext}>{text}</Text>
-
             {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
         </View>
     );
