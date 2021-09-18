@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { ImageBackground, StyleSheet } from "react-native";
 import AppButton from "../components/AppButton";
 
-const storeImage = "/Users/carolinehuang/HTN-2021-frontend/assets/KimStore.jpg"
-function StoreWelcomeScreen(navigation) {
+const storeImage = "../../assets/KimStore.jpg"
+function StoreWelcomeScreen({navigation}) {
     return (
         <ImageBackground style={styles.background} source={require(storeImage)}>
             <AppButton onPress={() => {
-                navigation.navigate('QR');
+                navigation.navigate('Shopping');
             }} title="Begin Shopping"></AppButton>
 
         </ImageBackground>
