@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "GoShop",
-    "slug": "GoShop",
+    "name": "HTN-2021-frontend",
+    "slug": "HTN-2021-frontend",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
