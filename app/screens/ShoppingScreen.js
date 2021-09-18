@@ -10,13 +10,13 @@ const listings = [
         id: 1,
         title: "Orange",
         price: 100,
-        image: require("/Users/carolinehuang/HTN-2021-frontend/assets/Orange.png"),
+        image: require("../../assets/Orange.png"),
     },
     {
         id: 2,
         title: "Coke",
         price: 1000,
-        image: require("/Users/carolinehuang/HTN-2021-frontend/assets/Orange.png"),
+        image: require("../../assets/Orange.png"),
     },
 ];
 
