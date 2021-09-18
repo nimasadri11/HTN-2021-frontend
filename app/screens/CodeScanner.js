@@ -41,6 +41,9 @@ function CodeScanner({ route, navigation }) {
                 <Button title={'Allow Camera'} onPress={() => askForCameraPermission()} />
             </View>)
     }
+    if (scanned) {
+        navigation.navigate('Welcome');
+    }
 
     // Return the View
     return (

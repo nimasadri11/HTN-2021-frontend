@@ -7,7 +7,7 @@ function StoreWelcomeScreen(navigation) {
     return (
         <ImageBackground style={styles.background} source={require(storeImage)}>
             <AppButton onPress={() => {
-                navigation.navigate('QR');
+                navigation.navigate('Shopping');
             }} title="Begin Shopping"></AppButton>
 
         </ImageBackground>
