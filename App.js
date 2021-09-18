@@ -1,37 +1,33 @@
 import React from "react";
-import HomeScreen from "./app/screens/HomeScreen";
+// // import HomeScreen from "./app/screens/HomeScreen";
 import CodeScanner from "./app/screens/CodeScanner";
-import { createStackNavigator } from 'react-navigation-stack';
+import WelconeScreen from "./app/screens/StoreWelcomeScreen";
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
-import Screen from "./app/components/Screen";
+// // import Screen from "./app/components/Screen";
+import { StyleSheet, Text, View } from 'react-native';
 
-const QR = () => (
-  <Screen>
-    <Text>QR</Text>
-  </Screen>
-)
+// import { StatusBar } from 'expo-status-bar';
+// import { StyleSheet, Text, View, Button, FlatList, RefreshControl } from 'react-native';
+// import React, { useEffect, useState, useRef } from 'react';
 
-const Welcome = () => (
-  <Screen>
-    <Text>Welcome</Text>
-  </Screen>
-)
+// import { createStackNavigator } from '@react-navigation/stack';
+// import { NavigationContainer } from '@react-navigation/native';
+
+
 
 
 const Stack = createStackNavigator();
-
-const StackNavigator = () => {
-  <Stack.Navigator>
-    <Stack.Screen name="QR" component={QR} />
-    <Stack.Screen name="Welcome" component={Welcome} />
-  </Stack.Navigator>
-}
 export default function App() {
+  
   return (
+    // <View>
+    //   <Text>Hi</Text>
+    // </View>
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="QR" component={Tweets} />
-        <Stack.Screen name="Welcome" component={Dweets} />
+      <Stack.Navigator initialRouteName='QR'>
+        <Stack.Screen name="QR" component={CodeScanner} />
+        <Stack.Screen name="Welcome" component={WelconeScreen} />
       </Stack.Navigator>
 
     </NavigationContainer>

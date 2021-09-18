@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-function CodeScanner() {
+function CodeScanner({route, navigation}) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [text, setText] = useState('Scan store QR code')
@@ -51,6 +52,8 @@ function CodeScanner() {
             </View>
             <Text style={styles.maintext}>{text}</Text>
             {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
+            <TouchableOpacity onPress={() => {
+                navigation.navigate('Welcome');}} title="GO to welcome"><Text>HIII</Text></TouchableOpacity>
         </View>
     );
 }
