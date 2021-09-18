@@ -4,6 +4,7 @@ import CodeScanner from "./app/screens/CodeScanner";
 import WelconeScreen from "./app/screens/StoreWelcomeScreen";
 import ShoppingScreen from "./app/screens/ShoppingScreen";
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from "@react-navigation/native";
 // // import Screen from "./app/components/Screen";
 import { StyleSheet, Text, View } from 'react-native';
@@ -18,19 +19,16 @@ import { StyleSheet, Text, View } from 'react-native';
 
 
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 export default function App() {
 
   return (
-    // <View>
-    //   <Text>Hi</Text>
-    // </View>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='QR'>
-        <Stack.Screen name="QR" component={CodeScanner} />
-        <Stack.Screen name="Welcome" component={WelconeScreen} />
-        <Stack.Screen name="Shopping" component={ShoppingScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator initialRouteName='QR'>
+        <Tab.Screen name="QR" component={CodeScanner} />
+        <Tab.Screen name="Welcome" component={WelconeScreen} />
+        <Tab.Screen name="Shopping" component={ShoppingScreen} />
+      </Tab.Navigator>
 
     </NavigationContainer>
   )

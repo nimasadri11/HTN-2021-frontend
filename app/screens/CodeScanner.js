@@ -55,9 +55,6 @@ function CodeScanner({ route, navigation }) {
             </View>
             <Text style={styles.maintext}>{text}</Text>
             {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
-            <AppButton onPress={() => {
-                navigation.navigate('Welcome');
-            }} title="GO to welcome"></AppButton>
         </View>
     );
 }
