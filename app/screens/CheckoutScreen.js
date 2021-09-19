@@ -1,11 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Animated, View, StyleSheet, Text, Button } from "react-native";
 import AppButton from "../components/AppButton";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 
 
-function CheckoutScreen(total) {
+function CheckoutScreen({route, navigation}) {
+    const [cart, setCart] = useState(route.params.cart);
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
     const fadeIn = () => {

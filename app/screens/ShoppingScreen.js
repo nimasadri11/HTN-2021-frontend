@@ -1,11 +1,12 @@
 // import React from "react";
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, View, Text, TextComponent } from "react-native";
+import { FlatList, StyleSheet, View, Text, TextComponent, Button } from "react-native";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import Screen from "../components/Screen";
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 
@@ -26,9 +27,9 @@ const listings = [
 ];
 
 
-function ShoppingScreen(props) {
+function ShoppingScreen({navigation}) {
     //const [cart, setCart] = useState({orange: 0, coke: 0, cup: 0});
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(['orange', 1]);
     useEffect(() => {
 
         const firebaseConfig = {
@@ -59,7 +60,7 @@ function ShoppingScreen(props) {
                             temp.push([ key, data[key] ])
                         }
                     }
-                    setCart(temp)
+                    // setCart(temp)
                 }
 
 
@@ -83,6 +84,7 @@ function ShoppingScreen(props) {
                     />
                 )}
             />
+            <Button title={"checkout"} onPress={() => {navigation.navigate('Checkout', {cart: cart})}}/>
         </Screen>
     );
 }
