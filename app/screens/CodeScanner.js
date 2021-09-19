@@ -3,6 +3,10 @@ import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import AppButton from '../components/AppButton';
 import API from '../services/api';
+import colors from '../config/colors';
+import BoldAppText from '../components/BoldAppText';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import BorderAppButton from '../components/BorderAppButton';
 
 function CodeScanner({ route, navigation }) {
     const [hasPermission, setHasPermission] = useState(null);
@@ -49,19 +53,19 @@ function CodeScanner({ route, navigation }) {
     // Return the View
     return (
         <View style={styles.container}>
-            <Button title="welcome" onPress={() => {
+            <Button title="" onPress={() => {
                 API.postStart().then(res => console.log(res));
                 navigation.navigate('Welcome');
-            }}/>
+            }} />
             <View style={styles.barcodebox}>
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                     style={{ height: 400, width: 400 }} />
             </View>
-            <Text style={styles.maintext}>{"Scan the store QR"}</Text>
+            <BoldAppText style={styles.maintext}>{"Scan the store QR"}</BoldAppText>
 
-            {scanned && <Button title={'Continue to ' + text} onPress={() => navigation.navigate('Welcome')} />}
-            {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
+            {scanned && <AppButton title={'Continue to ' + text} onPress={() => navigation.navigate('Store')} />}
+            {scanned && <BorderAppButton title={'Scan again?'} onPress={() => setScanned(false)} />}
         </View>
     );
 }
@@ -69,9 +73,10 @@ function CodeScanner({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.light,
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: 20,
     },
     maintext: {
         fontSize: 16,

@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import colors from "../config/colors";
 
-function AppButton({ title, onPress, color = "primary" }) {
+function BorderAppButton({ title, onPress, color = "primary" }) {
     return (
         <TouchableOpacity
             style={[styles.button]}
@@ -16,20 +16,25 @@ function AppButton({ title, onPress, color = "primary" }) {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: colors.blue,
-        borderRadius: 25,
-        justifyContent: "center",
-        alignItems: "center",
+        backgroundColor: '#fff',
+        borderRadius: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
         padding: 15,
+        width: 100,
         width: "80%",
         marginVertical: 10,
+        borderWidth: 3,
+        borderColor: colors.blue,
+
+
     },
     text: {
-        color: colors.white,
+        color: colors.blue,
         fontSize: 18,
         textTransform: "uppercase",
         fontWeight: "bold",
     },
 });
 
-export default AppButton;
+export default BorderAppButton;

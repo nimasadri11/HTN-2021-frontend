@@ -1,15 +1,16 @@
 import React from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
 import colors from "../config/colors";
+import BoldAppText from "./BoldAppText";
 
 function Card({ title, subTitle, image }) {
     return (
         <View style={styles.card}>
             <Image style={styles.image} source={image} />
             <View style={styles.detailsContainer}>
-                <Text style={styles.title} numberOfLines={1}>
+                <BoldAppText style={styles.title} numberOfLines={1}>
                     {title}
-                </Text>
+                </BoldAppText>
                 <Text style={styles.subTitle} numberOfLines={2}>
                     {subTitle}
                 </Text>
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: "100%",
-        height: 200,
+        height: 80,
     },
     subTitle: {
         color: colors.secondary,

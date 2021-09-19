@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet, View, ScrollView, Text } from "react-native";
 import AppButton from "../components/AppButton";
 
 const storeImage = "../../assets/KimStore.jpg"
-function StoreWelcomeScreen({navigation}) {
+function StoreWelcomeScreen({ navigation }) {
     return (
         <ImageBackground style={styles.background} source={require(storeImage)}>
-            <AppButton onPress={() => {
-                navigation.navigate('Shopping');
-            }} title="Begin Shopping"></AppButton>
-
+            <View style={styles.container}>
+                <AppButton onPress={() => {
+                    navigation.navigate('Cart');
+                }} title="Begin Shopping"></AppButton></View>
         </ImageBackground>
     )
 }
@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end"
     },
-    loginButton: {
-        width: '100%',
-        height: 70,
-        backgroundColor: "#fc5c65"
+    container: {
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 20,
     }
 })
 

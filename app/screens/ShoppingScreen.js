@@ -1,6 +1,6 @@
 // import React from "react";
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, View, Text, TextComponent, Button } from "react-native";
+import { FlatList, StyleSheet, View, Text, TextComponent, Button, ScrollView } from "react-native";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import Screen from "../components/Screen";
@@ -27,9 +27,11 @@ const listings = [
 ];
 
 
-function ShoppingScreen({navigation}) {
+function ShoppingScreen({ navigation }) {
     //const [cart, setCart] = useState({orange: 0, coke: 0, cup: 0});
-    const [cart, setCart] = useState(['orange', 1]);
+    //const [cart, setCart] = useState({ [orange: 1, coke: 1, cup: 0 ] });
+    //const [cart, setCart] = useState(['orange', 1]);
+    const [cart, setCart] = useState([{ 'name': 'orange', 'count': 1 }])
     useEffect(() => {
 
         const firebaseConfig = {
@@ -57,7 +59,7 @@ function ShoppingScreen({navigation}) {
                     for (var key in data) {
                         if (data[key] > 0) {
 
-                            temp.push([ key, data[key] ])
+                            temp.push([key, data[key]])
                         }
                     }
                     // setCart(temp)
@@ -70,30 +72,56 @@ function ShoppingScreen({navigation}) {
         });
     }, []);
 
+    const metadata = {
+        orange: {
+            price: "1.50",
+            image: "../assets/Orange.png"
+        },
+        cup: {
+            price: "0.75",
+            image: "../assets/cup.png"
+        },
+        coke: {
+            price: "1.00",
+            image: "../assets/Coke.png"
+        }
+    }
 
     return (
-        <Screen style={styles.screen}>
-            <FlatList
-                data={cart}
-                keyExtractor={(listing) => listing.toString()}
-                renderItem={({ item }) => (
-                    <Card
-                        title={`${item[0]} x ${item[1]}`}
-                        subTitle={"$" + item.price}
-                        image={item.image}
-                    />
-                )}
-            />
-            <Button title={"checkout"} onPress={() => {navigation.navigate('Checkout', {cart: cart})}}/>
-        </Screen>
+        <ScrollView style={styles.container}>
+            <View>
+                <FlatList
+                    data={cart}
+                    keyExtractor={(listing) => listing.toString()}
+                    style={styles.list}
+                    renderItem={({ item }) => (
+                        <Card
+                            title={`${item["name"]} x ${item["count"]}`}
+                            subTitle={"$" + metadata[item.name].price}
+                            image={
+                                metadata[item.name].image}
+                        />
+                    )}
+                />
+                <Button title={"Go to Checkout"} onPress={() => { navigation.navigate('Checkout', { cart: cart }) }} />
+            </View>
+
+
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
+        flexGrow: 1,
+        flexDirection: 'column',
+
         padding: 20,
         backgroundColor: colors.light,
     },
+    list: {
+        marginHorizontal: 3,
+    }
 });
 
 export default ShoppingScreen;
