@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import AppButton from '../components/AppButton';
+import API from '../services/api';
 
 function CodeScanner({ route, navigation }) {
     const [hasPermission, setHasPermission] = useState(null);
@@ -48,6 +49,10 @@ function CodeScanner({ route, navigation }) {
     // Return the View
     return (
         <View style={styles.container}>
+            <Button title="welcome" onPress={() => {
+                API.postStart().then(res => console.log(res));
+                navigation.navigate('Welcome');
+            }}/>
             <View style={styles.barcodebox}>
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}

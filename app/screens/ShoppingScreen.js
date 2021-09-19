@@ -51,19 +51,17 @@ function ShoppingScreen(props) {
                     console.log(change.doc.data());
                     //setCart(change.doc.data());
 
-                    temp = []
+                    var temp = []
                     const data = change.doc.data();
-                    for (key in data) {
-                        temp.append({ key: data[key] })
+                    for (var key in data) {
+                        if (data[key] > 0) {
+
+                            temp.push([ key, data[key] ])
+                        }
                     }
                     setCart(temp)
                 }
-                // if (change.type === 'modified') {
-                //   console.log('Modified city: ', change.doc.data());
-                // }
-                // if (change.type === 'removed') {
-                //   console.log('Removed city: ', change.doc.data());
-                // }
+
 
             });
         }, err => {
@@ -72,22 +70,14 @@ function ShoppingScreen(props) {
     }, []);
 
 
-    if (temp.length === 0) {
-        return (
-            <View>
-                <Text>It's empty in here...</Text>
-                <Text>Pick up an item to add to your cart!</Text>
-            </View>
-        )
-    }
     return (
         <Screen style={styles.screen}>
             <FlatList
                 data={cart}
-                keyExtractor={(listing) => listing.id.toString()}
+                keyExtractor={(listing) => listing.toString()}
                 renderItem={({ item }) => (
                     <Card
-                        title={item.title}
+                        title={`${item[0]} x ${item[1]}`}
                         subTitle={"$" + item.price}
                         image={item.image}
                     />
