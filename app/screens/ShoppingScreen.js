@@ -75,7 +75,7 @@ function ShoppingScreen(props) {
     if (temp.length === 0) {
         return (
             <View>
-                <Text>It's empty in here</Text>
+                <Text>It's empty in here...</Text>
                 <Text>Pick up an item to add to your cart!</Text>
             </View>
         )

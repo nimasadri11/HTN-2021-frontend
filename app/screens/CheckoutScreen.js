@@ -4,9 +4,6 @@ import AppButton from "../components/AppButton";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 
-const total = "$10"
-
-
 
 function CheckoutScreen(total) {
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -38,13 +35,12 @@ function CheckoutScreen(total) {
                     }
                 ]}
             >
-                <Card title="Payment Complete!" subtitle="Thank you for shopping Kim's Convinence" />
                 <Text style={styles.fadingText}>Payment Complete</Text>
                 <Text>Thank you for shopping Kim's Convenience!</Text>
             </Animated.View>
             <View style={styles.buttonRow}>
                 <Button title="Pay now" onPress={fadeIn} />
-                <Button title="" onPress={fadeOut} />
+                <Button title="Exit" onPress={fadeOut} />
             </View>
         </View>
     );
