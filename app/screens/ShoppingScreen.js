@@ -1,6 +1,6 @@
 // import React from "react";
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, View, Text } from "react-native";
+import { FlatList, StyleSheet, View, Text, TextComponent } from "react-native";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import Screen from "../components/Screen";
@@ -27,13 +27,14 @@ const listings = [
 
 
 function ShoppingScreen(props) {
-    const [cart, setCart] = useState({orange: 0, coke: 0, cup: 0});
+    //const [cart, setCart] = useState({orange: 0, coke: 0, cup: 0});
+    const [cart, setCart] = useState([]);
     useEffect(() => {
-        
+
         const firebaseConfig = {
             apiKey: 'AIzaSyA4PuT6Sy_nhVvDDuN4lzbaKl2XsXq2nhI',
             authDomain: 'promising-saga-326312.firebaseapp.com',
-        //   databaseURL: 'https://project-id.firebaseio.com',
+            //   databaseURL: 'https://project-id.firebaseio.com',
             projectId: 'promising-saga-326312',
             storageBucket: 'promising-saga-326312.appspot.com',
             messagingSenderId: '123483718668',
@@ -47,8 +48,15 @@ function ShoppingScreen(props) {
         const observer = dbh.collection('htn').onSnapshot(querySnapshot => {
             querySnapshot.docChanges().forEach(change => {
                 if (change.type === 'modified' || change.type === "added") {
-                  console.log(change.doc.data());
-                  setCart(change.doc.data());
+                    console.log(change.doc.data());
+                    //setCart(change.doc.data());
+
+                    temp = []
+                    const data = change.doc.data();
+                    for (key in data) {
+                        temp.append({ key: data[key] })
+                    }
+                    setCart(temp)
                 }
                 // if (change.type === 'modified') {
                 //   console.log('Modified city: ', change.doc.data());
@@ -56,22 +64,26 @@ function ShoppingScreen(props) {
                 // if (change.type === 'removed') {
                 //   console.log('Removed city: ', change.doc.data());
                 // }
-    
-              });
+
+            });
         }, err => {
-        console.log(`Encountered error: ${err}`);
+            console.log(`Encsountered error: ${err}`);
         });
-      }, []);
-    
+    }, []);
+
+
+    if (temp.length === 0) {
+        return (
+            <View>
+                <Text>It's empty in here</Text>
+                <Text>Pick up an item to add to your cart!</Text>
+            </View>
+        )
+    }
     return (
         <Screen style={styles.screen}>
-            <View>
-                <Text>Orange: {cart.orange}</Text>
-                <Text>Cup: {cart.cup}</Text>
-                <Text>Coke: {cart.coke}</Text>
-            </View>
             <FlatList
-                data={listings}
+                data={cart}
                 keyExtractor={(listing) => listing.id.toString()}
                 renderItem={({ item }) => (
                     <Card

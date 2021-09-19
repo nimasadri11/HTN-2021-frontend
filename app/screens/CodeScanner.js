@@ -41,9 +41,9 @@ function CodeScanner({ route, navigation }) {
                 <Button title={'Allow Camera'} onPress={() => askForCameraPermission()} />
             </View>)
     }
-    if (scanned) {
-        navigation.navigate('Welcome');
-    }
+    //if (scanned) {
+    //    navigation.navigate('Welcome');
+    //}
 
     // Return the View
     return (
@@ -53,7 +53,9 @@ function CodeScanner({ route, navigation }) {
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                     style={{ height: 400, width: 400 }} />
             </View>
-            <Text style={styles.maintext}>{text}</Text>
+            <Text style={styles.maintext}>{"Scan the store QR"}</Text>
+
+            {scanned && <Button title={'Continue to ' + text} onPress={() => navigation.navigate('Welcome')} />}
             {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
         </View>
     );
