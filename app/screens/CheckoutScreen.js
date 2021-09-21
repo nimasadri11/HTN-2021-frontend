@@ -21,7 +21,11 @@ function CheckoutScreen(route) {
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
-        API.postCheckout().then((res) => setPrice(res['price']))
+        console.log("INside use effect");
+        API.postCheckout().then((res) => {setPrice(res['price']);
+        console.log("TOTAL IS HERE");
+        console.log(res);
+    })
     }, [])
 
     const fadeIn = () => {
@@ -48,7 +52,7 @@ function CheckoutScreen(route) {
             </View>
             <AppButton title="Pay now" onPress={fadeIn} style={styles.payButton} />
             <BorderAppButton title="Exit" onPress={fadeOut} />
-            <Image style={styles.image} source={require("/Users/carolinehuang/HTN-2021-frontend/assets/Grab_n_-removebg-preview.png")} />
+            <Image style={styles.image} source={require("/Users/nima/Desktop/HTN/HTN-2021-frontend/assets/logo.png")} />
             <Animated.View
                 style={[
                     styles.fadingContainer,
@@ -59,8 +63,8 @@ function CheckoutScreen(route) {
                 ]}
             >
                 <Text style={styles.fadingText}>Payment Complete</Text>
-                <Text style={styles.fadingMiniText}>Thank you for shopping Kim's Convenience!</Text>
-                <Image source={{ uri: "https://media.giphy.com/media/SKzycJ9FOiQCWMV3gx/giphy.gif" }} />
+                <Text style={styles.fadingMiniText}>Thank you for shopping at Kim's Convenience!</Text>
+                <Image style={{width: 200, height: 200, marginTop: 20}} source={{ uri: "https://media.giphy.com/media/SKzycJ9FOiQCWMV3gx/giphy.gif" }} />
             </Animated.View>
         </View>
     );
@@ -97,9 +101,10 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 15,
         width: 300,
-        height: 250,
+        height: 350,
         backgroundColor: colors.secondary,
         alignItems: "center",
+        marginTop: 10
 
     },
     fadingText: {

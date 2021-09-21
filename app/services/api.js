@@ -1,6 +1,7 @@
 import { AppOwnership } from "expo-constants";
 
-const baseUrl = 'http://localhost:8000/api/';
+// const baseUrl = 'http://localhost:8000/api/';
+const baseUrl = 'http://da00-99-228-168-86.ngrok.io/api/';
 
 const API = {
     //   async getCart() {

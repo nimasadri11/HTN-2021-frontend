@@ -64,7 +64,13 @@ function CodeScanner({ route, navigation }) {
             </View>
             <BoldAppText style={styles.maintext}>{"Scan the store QR"}</BoldAppText>
 
-            {scanned && <AppButton title={'Continue to ' + text} onPress={() => navigation.navigate('Store')} />}
+            {scanned && <AppButton title={'Continue to ' + text} onPress={() => {
+                API.postStart().then(res => {console.log(res);
+                    navigation.navigate('Store');
+                });
+                
+            }
+                } />}
             {scanned && <BorderAppButton title={'Scan again?'} onPress={() => setScanned(false)} />}
         </View>
     );

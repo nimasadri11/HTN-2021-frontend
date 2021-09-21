@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ImageBackground, StyleSheet, View, ScrollView, Text } from "react-native";
 import AppButton from "../components/AppButton";
 
-const storeImage = "../../assets/KimStore.jpg"
+const storeImage = "/Users/nima/Desktop/HTN/HTN-2021-frontend/assets/KimStore.jpg"
 function StoreWelcomeScreen({ navigation }) {
     return (
         <ImageBackground style={styles.background} source={require(storeImage)}>

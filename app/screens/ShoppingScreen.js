@@ -16,13 +16,13 @@ const listings = [
         id: 1,
         title: "Orange",
         price: 100,
-        image: require("../../assets/Orange.png"),
+        image: require("/Users/nima/Desktop/HTN/HTN-2021-frontend/assets/Orange.png"),
     },
     {
         id: 2,
         title: "Coke",
         price: 1000,
-        image: require("../../assets/Orange.png"),
+        image: require("/Users/nima/Desktop/HTN/HTN-2021-frontend/assets/Orange.png"),
     },
 ];
 
@@ -31,7 +31,8 @@ function ShoppingScreen({ navigation }) {
     //const [cart, setCart] = useState({orange: 0, coke: 0, cup: 0});
     //const [cart, setCart] = useState({ [orange: 1, coke: 1, cup: 0 ] });
     //const [cart, setCart] = useState(['orange', 1]);
-    const [cart, setCart] = useState([{ 'name': 'orange', 'count': 1 }])
+    // const [cart, setCart] = useState([{ 'name': 'orange', 'count': 1 }])
+    const [cart, setCart] = useState([])
     useEffect(() => {
 
         const firebaseConfig = {
@@ -59,10 +60,12 @@ function ShoppingScreen({ navigation }) {
                     for (var key in data) {
                         if (data[key] > 0) {
 
-                            temp.push([key, data[key]])
+                            temp.push({name: key, count: data[key]})
                         }
                     }
-                    // setCart(temp)
+                    console.log("CART:");
+                    console.log(temp);
+                    setCart(temp);
                 }
 
 
@@ -75,15 +78,15 @@ function ShoppingScreen({ navigation }) {
     const metadata = {
         orange: {
             price: "1.50",
-            image: "../assets/Orange.png"
+            image: require("/Users/nima/Desktop/HTN/HTN-2021-frontend/assets/Orange.png")
         },
         cup: {
             price: "0.75",
-            image: "../assets/cup.png"
+            image: require("/Users/nima/Desktop/HTN/HTN-2021-frontend/assets/cup.jpeg")
         },
         coke: {
             price: "1.00",
-            image: "../assets/Coke.png"
+            image: require("/Users/nima/Desktop/HTN/HTN-2021-frontend/assets/Coke.jpeg")
         }
     }
 
@@ -98,8 +101,8 @@ function ShoppingScreen({ navigation }) {
                         <Card
                             title={`${item["name"]} x ${item["count"]}`}
                             subTitle={"$" + metadata[item.name].price}
-                            image={
-                                metadata[item.name].image}
+                            image={metadata[item.name].image}
+                        
                         />
                     )}
                 />

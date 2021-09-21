@@ -25,13 +25,14 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         marginBottom: 20,
         overflow: "hidden",
+        flexDirection: 'row'
     },
     detailsContainer: {
         padding: 20,
     },
     image: {
-        width: "100%",
-        height: 80,
+        width: 100,
+        height: 100,
     },
     subTitle: {
         color: colors.secondary,
